@@ -62,7 +62,7 @@
         </p>
     </section>
     <section>
-        <h3>Integration Offerings</h3>
+        <h3>Integration Types</h3>
         <ul>
             <li class="fragment">Portal Page (simple)</li>
             <li class="fragment">API (deep)</li>
@@ -710,6 +710,15 @@ public DataPackageMetadata loadMetadata(String dataPackageId) {
         <h2>JIRA</h2>
         <p>All customer requests are tracked in JIRA</p>
     </section>
+    <section>
+        <h2>JIRA REST APIs</h2>
+        <ul>
+            <li>Create</li>
+            <li>Update</li>
+            <li>Reassign</li>
+            <li>Close</li>
+        </ul>
+    </section>
 </section>
 
 <!-- IPA -->
@@ -850,6 +859,25 @@ Oct  2 16:44:17 ipapiapp2 [appname:datastream_integration] 44:17 [pool-1-thread-
     <section>
         <p>Is it possible to authenticate as non authenticated user?</p>
         <p class="fragment">SAML2 IdP using Ingenuity certificate on DS follow by CAS PGT</p>
+        <pre class="fragment prettyprint">
+
+SamlMsg msg = samlLoginService.login(ssoAssertionUrl, dsServiceUrl);
+
+java.util.List&lt;NameValuePair&gt; nameValuePairs = new ArrayList&lt;NameValuePair&gt;();
+nameValuePairs.add(new BasicNameValuePair("RelayState", msg.getRelayState()));
+nameValuePairs.add(new BasicNameValuePair("SAMLResponse", msg.getSamlResponse()));
+
+HttpPost httpPost = new HttpPost(msg.getSamlPostUrl());
+httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+HttpResponse response = httpClient.execute(httpPost);
+HttpEntity entity = response.getEntity();
+EntityUtils.consume(entity);
+
+        </pre>
+    </section>
+    <section>
+        <p>PGT request same as beflore</p>
+        <a href="#/11/4">VA Slide 11-4</a>
     </section>
 </section>
 
