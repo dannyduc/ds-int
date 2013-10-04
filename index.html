@@ -498,6 +498,113 @@ public class DataUploadController {
 }
         </pre>
     </section>
+    <section>
+        <h2>Exception Handling</h2>
+        <p>How to Catch all errors and don't return stack traces?</p>
+        <pre class="fragment prettyprint">
+@ControllerAdvice
+public class RestResponseEntityExceptionHandler
+            extends ResponseEntityExceptionHandler {
+
+@ExceptionHandler(value = {
+            IllegalArgumentException.class,
+            IllegalStateException.class
+})
+protected ResponseEntity&lt;Object&gt; handleConflict(
+            RuntimeException ex,
+            WebRequest request) {
+
+    String bodyOfResponse = "This should be application specific";
+        return handleExceptionInternal(ex, bodyOfResponse,
+        new HttpHeaders(), HttpStatus.CONFLICT, request);
+    }
+}
+        </pre>
+    </section>
+    <section>
+        <h2>How to test controllers?</h2>
+        <pre class="prettyprint">
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = {ActivationControllerTestContextMock.class, ActivationControllerTestContext.class})
+@WebAppConfiguration
+public class ActivationControllerTest {
+
+    @Resource(name = "activationDAO")
+    ActivationDAO activationDAOMock;
+
+    @Resource(name = "variantAnalysisApi")
+    VariantAnalysisApi variantAnalysisApiMock;
+
+    private MockMvc mockMvc;
+
+    @Autowired
+    WebApplicationContext webApplicationContext;
+
+    @Before
+    public void setUp() {
+        Mockito.reset(activationDAOMock);
+        Mockito.reset(variantAnalysisApiMock);
+        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+    }
+}
+        </pre>
+    </section>
+    <section>
+        <pre class="prettyprint">
+@Test
+public void validateWithActivationCodeShouldReturnStatusOk() throws Exception {
+    String activationId = "07cba26b-3916-43ba-9ac5-b07b7504d23a-126";
+    String sampleId = UUID.randomUUID().toString();
+    String activationCode = "LabTest001";
+
+    List&lt;ActivationCode&gt; codes = new ArrayList&lt;ActivationCode&gt;();
+        codes.add(new ActivationCode(sampleId, activationCode));
+
+        Activation activation = new ActivationBuilder().id(activationId)
+            .activationCodes(codes).build();
+
+        when(activationDAOMock.fetch(activationId)).thenReturn(activation);
+
+        MvcResult mvcResult = mockMvc.perform(get("/v1/activations/"
+            + activationId + "/validate")
+            .contentType(MediaType.APPLICATION_JSON)
+        )
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.activation.activationCodes[0].sampleId",
+                   is(sampleId)))
+        .andReturn();
+}
+        </pre>
+    </section>
+    <section>
+        <p>Common Rest responses like Pagination</p>
+        <ul>
+            <li>Link HTTP header with “next“, “prev“, “first” and “last” link relation types.</li>
+            <li>Use Spring publish/subscribe model</li>
+            <li>Controller will fire PaginatedResultsRetrievedEvent</li>
+            <li>Common listener will write out Link headers</li>
+        </ul>
+    </section>
+    <section>
+        <h2>Controller Publish</h2>
+        <pre class="prettyprint">
+@RequestMapping(value = "/datapackages", params = { "page", "size" }, method = GET )
+@ResponseBody
+public List<DataPackage> findPaginated(
+            @RequestParam( "page" ) int page, @RequestParam( "size" ) int size,
+            UriComponentsBuilder uriBuilder, HttpServletResponse response ){
+
+   Page< Foo > resultPage = service.findPaginated( page, size );
+   if( page > resultPage.getTotalPages() ){
+      throw new ResourceNotFoundException();
+   }
+   eventPublisher.publishEvent( new PaginatedResultsRetrievedEvent< Foo >
+    ( Foo.class, uriBuilder, response, page, resultPage.getTotalPages(), size ) );
+
+   return resultPage.getContent();
+}
+        </pre>
+    </section>
 </section>
 
 <section>
