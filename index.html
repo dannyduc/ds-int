@@ -148,6 +148,22 @@
         </p>
     </section>
     <section>
+        <h2>Ingenuity JavaScript</h2>
+        <pre class="prettyprint">
+Ingenuity.getLoginStatus(function(response) {
+  if (response.status === 'connected') {
+    // user logged in and granted your app access
+    var uid = response.authResponse.userId;
+    var accessToken = response.authResponse.accessToken;
+  } else if (response.status === 'not_authorized') {
+    // user is logged into Ingenuity but has not granted your app access
+  } else {
+    // not logged into Ingenuity
+  }
+});
+        </pre>
+    </section>
+    <section>
         <h2>Google reCAPCHA</h2>
         <p><a href="http://www.google.com/recaptcha" target="_blank">http://www.google.com/recaptcha</a></p>
     </section>
