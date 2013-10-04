@@ -234,6 +234,71 @@ recaptcha.privateKey=9feWa9MSKKKKKKGfVO9WZXTil37CtrxDjLXiCFIz
         <p>Done within the browser using YUI query</p>
         <p>Move to the server for easier debugging and logging</p>
     </section>
+    <section>
+        <h2>Browswer Scraping</h2>
+        <pre class="prettyprint">
+function loadHtml5(id) {
+    var sfurl = "https://ingenuity-it.sharefile.com" +
+            "/upload-storagecenter.aspx?id=" + id;
+    var q = "http://query.yahooapis.com/" +
+            "v1/public/yql?q=" +
+            "select * from html where url = '" + sfurl +
+            "'&format=xml&diagnostics=true";
+    $.ajax({
+        url: q,
+        dataType: 'text'
+    }).done(function(xml) {
+        var regex = /upOpts = {([^}]+)/;
+        var opts = xml.match(regex)[1];
+
+        var upOpts = (new Function('return ({' + opts + '})'))();
+
+        upOpts.redirectURL = '/datastream/api/sharefile/confirm?src=upload&id=' + id;
+
+        html5up = new SFHtml5Upload(upOpts);
+        html5up.init();
+    });
+}
+        </pre>
+    </section>
+    <section>
+        <h2>Server Scraping</h2>
+        <pre class="prettyprint">
+@RequestMapping(value="/sharefile/content/{id}")
+@ResponseBody
+public Map doScreenScrape(@PathVariable String id,
+                          HttpServletResponse response) throws
+            IOException {
+
+    response.setContentType("text/plain;charset=UTF-8");
+
+    String url = String.format(
+            "https://ingenuity-it.sharefile.com" +
+            "/upload-storagecenter.aspx?id=%s", id);
+
+    logger.info("parsing url " + url);
+
+    String sfPage = getPageContent(url);
+
+    Map m = new HashMap();
+    m.put("html5Opts", parseHtml5Opts(sfPage));
+    m.put("flashOpts", parseFlashOpts(sfPage));
+    m.put("standardOpts", parseStandardOpts(sfPage));
+
+    return m;
+}
+        </pre>
+    </section>
+    <section>
+        <h2>End Result</h2>
+        <p>Sharefile upload widget</p>
+        <img src="img/sf-widget.png" alt="sharefile widget"/>
+    </section>
+</section>
+
+<!-- FTP -->
+<section>
+
 </section>
 
 <section>
