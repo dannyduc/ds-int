@@ -688,6 +688,20 @@ public List&lt;DataPackage&gt; findPaginated(
         <h2>Shared NFS</h2>
         <p>dataPackages are stored on a centralize file system</p>
     </section>
+    <section>
+        <p>Files written out to NFS can not always be read immediately after</p>
+        <p class="fragment">How to handle this?</p>
+        <p class="fragment">Add a @Retry annotation in DataPackage load method</p>
+        <pre class="fragment prettyprint">
+@Retry(
+    strategy = RetryStrategyEnum.MAX,
+    backOff = BackOffStrategyEnum.FIXED
+)
+public DataPackageMetadata loadMetadata(String dataPackageId) {
+    return loadFromNFS(getPath(dataPacakgeId));
+}
+        </pre>
+    </section>
 </section>
 
 <!-- JIRA -->
@@ -744,12 +758,63 @@ public List&lt;DataPackage&gt; findPaginated(
     <section>
         <h2>VA/VCS</h2>
     </section>
+    <section>
+        <h2>API Usage Model</h2>
+        <p>VA APIs requires username/password authentication.  Since the datastream does not store or has access to user's password, we use the following as a workaround</p>
+        <ul>
+            <li>
+                Authenticate each VA API call with a dedicated user datastream@ingenuity.com
+                <ul>
+                    <li>Since VA enforces single concurrent session usage, datastream user account is assigned a Concurrent License with no max usage count</li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+    <section>
+        <ul>
+            <li>DS API Upload:  For sample upload and analysis run the datastream user will do a VA "share copy" to the destination user account</li>
+            <li>DS Portal Upload:  For sample upload and analysis run the datastream user will a VA "share" to the destination user account</li>
+            <li>DS Export:  The datastream user will call the VA export API to export the user's analysis by passing the user's analysisId</li>
+            <li>DS Activation:  The datastream user will call VA activate API to activate the user's sample by passing user's sampleId</li>
+        </ul>
+    </section>
+    <section>
+        <p>Occasional errors when getting analysis status from VA</p>
+        <pre class="prettyprint">
+@Retry
+public String getResponseFromGetMethod (String url, Header header)
+            throws IOException {
+    GetMethod m = new GetMethod (url);
+    if (header != null) {
+        m.addRequestHeader(header);
+    }
+    client.executeMethod(m);
+    String responseBody = getResponseBody(m);
+    m.releaseConnection();
+    if (logger.isDebugEnabled()) {
+        logger.debug(m.getURI());
+        logger.debug(responseBody);
+    }
+    return responseBody;
+}
+        </pre>
+    </section>
+    <section>
+        <pre class="prettyprint">
+Oct  2 16:44:17 ipapiapp2 [appname:datastream_integration] 44:17 [pool-1-thread-3] WARN  (com.ingenuity.datastream_integration.va.retry.impl.DefaultRetryExecutor:executeTask:25) - Caught exception, retrying... tryNo: 0
+        </pre>
+    </section>
 </section>
 
 <!-- iReport -->
 <section>
     <section>
         <h2>iReport</h2>
+        <p>DS uses SDM service to run and assign report to the target users</p>
+    </section>
+    <section>
+        <h2>com.healthmarketscience.rmiio</h2>
+        <p>Since model objects in Stats Pipeline can get pretty large, Spring streaming remote method invocation was implemented.  Code copied from IKRS</p>
     </section>
 </section>
 
