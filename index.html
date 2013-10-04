@@ -18,7 +18,8 @@
     <link rel="stylesheet" href="css/theme/default.css" id="theme">
 
     <!-- For syntax highlighting -->
-    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <!--<link rel="stylesheet" href="lib/css/zenburn.css">-->
+    <link href="plugin/google-code-prettify/prettify.css" type="text/css" rel="stylesheet" />
 
     <!-- If the query includes 'print-pdf', use the PDF print sheet -->
     <script>
@@ -92,13 +93,36 @@
         <img src="img/ds-send-file.png" alt="send file"/>
     </section>
     <section>
-        <h2>Basement Level 3</h2>
-
-        <p>That's it, time to go back up.</p>
-        <a href="#/2" class="image">
-            <img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow"
-                 style="-webkit-transform: rotate(180deg);">
-        </a>
+        <h2>Requirements</h2>
+        <ul>
+            <li class="fragment">User does not need an Ingenuity account</li>
+            <li class="fragment">Initial page should be the landing page not the log in screen</li>
+            <li class="fragment">Use CAPTCHA if user is not authenticated</li>
+        </ul>
+    </section>
+    <section>
+        <h2>Landing Page (Unauthenticated)</h2>
+        <img src="img/ds-initial-unauth-page.png" alt="unauthenticated landing page"/>
+    </section>
+    <section>
+        <h2>Landing Page (Authenticated)</h2>
+        <img src="img/ds-initial-auth-page.png" alt="authenticated landing page"/>
+    </section>
+    <section>
+        <!--<p>How to detect if user is already authenticated?</p>-->
+        <!--<p class="fragment">Spring holds user's authentication info in a thread local variable.</p>-->
+        <pre class="prettyprint">
+            public abstract class AuthenticationUtil {
+  public static boolean isAnonymous() {
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    boolean isAnonymous = AnonymousAuthenticationToken.class.isAssignableFrom(authentication.getClass());
+    return isAnonymous;
+  }
+  public static boolean isAuthenticated() {
+    return UserContext.getUserDetails() != null;
+  }
+}
+        </pre>
     </section>
 </section>
 
@@ -433,9 +457,10 @@
             { src: 'plugin/markdown/markdown.js', condition: function () {
                 return !!document.querySelector('[data-markdown]');
             } },
-            { src: 'plugin/highlight/highlight.js', async: true, callback: function () {
-                hljs.initHighlightingOnLoad();
-            } },
+//            { src: 'plugin/highlight/highlight.js', async: true, callback: function () {
+//                hljs.initHighlightingOnLoad();
+//            } },
+            { src: 'plugin/google-code-prettify/run_prettify.js' },
             { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () {
                 return !!document.body.classList;
             } },
