@@ -46,11 +46,146 @@
 	<key>Creator</key>
 	<string>Danny Nguyen</string>
 	<key>DisplayScale</key>
-	<string>1 0/72 in = 1 0/72 in</string>
+	<string>1 0/72 in = 1.0000 in</string>
 	<key>GraphDocumentVersion</key>
 	<integer>8</integer>
 	<key>GraphicsList</key>
 	<array>
+		<dict>
+			<key>Class</key>
+			<string>LineGraphic</string>
+			<key>Head</key>
+			<dict>
+				<key>ID</key>
+				<integer>56</integer>
+			</dict>
+			<key>ID</key>
+			<integer>57</integer>
+			<key>Points</key>
+			<array>
+				<string>{508.49920677852913, 495.5281529398988}</string>
+				<string>{555.50079401771461, 498.17882379935867}</string>
+			</array>
+			<key>Style</key>
+			<dict>
+				<key>stroke</key>
+				<dict>
+					<key>HeadArrow</key>
+					<string>0</string>
+					<key>Legacy</key>
+					<true/>
+					<key>TailArrow</key>
+					<string>0</string>
+				</dict>
+			</dict>
+			<key>Tail</key>
+			<dict>
+				<key>ID</key>
+				<integer>55</integer>
+				<key>Info</key>
+				<integer>3</integer>
+			</dict>
+		</dict>
+		<dict>
+			<key>Bounds</key>
+			<string>{{556, 464}, {99, 74}}</string>
+			<key>Class</key>
+			<string>ShapedGraphic</string>
+			<key>ID</key>
+			<integer>56</integer>
+			<key>Shape</key>
+			<string>NoteShape</string>
+			<key>Style</key>
+			<dict/>
+			<key>Text</key>
+			<dict>
+				<key>Align</key>
+				<integer>0</integer>
+				<key>Text</key>
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf510
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\f0\fs24 \cf0 to tack all ds uploads\
+\
+recorded by all ds apps}</string>
+				<key>VerticalPad</key>
+				<integer>0</integer>
+			</dict>
+		</dict>
+		<dict>
+			<key>Bounds</key>
+			<string>{{409, 464}, {99, 63}}</string>
+			<key>Class</key>
+			<string>ShapedGraphic</string>
+			<key>ID</key>
+			<integer>55</integer>
+			<key>Magnets</key>
+			<array>
+				<string>{0, 1}</string>
+				<string>{0, -1}</string>
+				<string>{1, 0}</string>
+				<string>{-1, 0}</string>
+			</array>
+			<key>Shape</key>
+			<string>Cube</string>
+			<key>Style</key>
+			<dict/>
+			<key>Text</key>
+			<dict>
+				<key>Align</key>
+				<integer>0</integer>
+				<key>Text</key>
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf510
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\f0\b\fs24 \cf0 \
+JIRA}</string>
+				<key>VerticalPad</key>
+				<integer>0</integer>
+			</dict>
+			<key>TextPlacement</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>Bounds</key>
+			<string>{{637, 81.000045776367188}, {99, 63}}</string>
+			<key>Class</key>
+			<string>ShapedGraphic</string>
+			<key>ID</key>
+			<integer>54</integer>
+			<key>Magnets</key>
+			<array>
+				<string>{0, 1}</string>
+				<string>{0, -1}</string>
+				<string>{1, 0}</string>
+				<string>{-1, 0}</string>
+			</array>
+			<key>Shape</key>
+			<string>Cube</string>
+			<key>Style</key>
+			<dict/>
+			<key>Text</key>
+			<dict>
+				<key>Align</key>
+				<integer>0</integer>
+				<key>Text</key>
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf510
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\f0\b\fs24 \cf0 \
+IPA}</string>
+				<key>VerticalPad</key>
+				<integer>0</integer>
+			</dict>
+			<key>TextPlacement</key>
+			<integer>0</integer>
+		</dict>
 		<dict>
 			<key>Class</key>
 			<string>LineGraphic</string>
@@ -63,8 +198,8 @@
 			<integer>53</integer>
 			<key>Points</key>
 			<array>
-				<string>{517, 480.5}</string>
-				<string>{586.5, 480.5}</string>
+				<string>{506, 388.50004577636719}</string>
+				<string>{555.5, 388.50004577636719}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -88,7 +223,7 @@
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{587, 449}, {99, 63}}</string>
+			<string>{{556, 357.00006103515625}, {99, 63}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -105,14 +240,14 @@
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc
 
-\f0\fs24 \cf0 shared by all ds apps}</string>
+\f0\fs24 \cf0 shared by all ds apps to store datasets}</string>
 				<key>VerticalPad</key>
 				<integer>0</integer>
 			</dict>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{447, 449}, {70, 63}}</string>
+			<string>{{436, 357.00004577636719}, {70, 63}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -155,8 +290,8 @@
 			<integer>51</integer>
 			<key>Points</key>
 			<array>
-				<string>{528.57535412567984, 189.46661266057171}</string>
-				<string>{504.6796458743201, 251.53338733942829}</string>
+				<string>{517.48009854174279, 170.48761219269886}</string>
+				<string>{503.5, 232.00004577636716}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -178,7 +313,7 @@
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{475, 115}, {136, 74}}</string>
+			<string>{{458, 96.000045776367188}, {136, 74}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -213,8 +348,8 @@ App Pipeline Runner}</string>
 			<integer>49</integer>
 			<key>Points</key>
 			<array>
-				<string>{125.26463832443689, 461.68897203886178}</string>
-				<string>{224, 423.5}</string>
+				<string>{132.49955555304629, 460.39036866462021}</string>
+				<string>{200.50044993261466, 457.52120680847548}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -236,7 +371,7 @@ App Pipeline Runner}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{27.12982177734375, 449}, {99, 63}}</string>
+			<string>{{33, 431}, {99, 63}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -272,8 +407,8 @@ App Pipeline Runner}</string>
 			<integer>47</integer>
 			<key>Points</key>
 			<array>
-				<string>{126.62982177734375, 325.5}</string>
-				<string>{224, 325.5}</string>
+				<string>{132.49084218444389, 218.20167290100099}</string>
+				<string>{200.50969334766651, 231.40202353027689}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -295,7 +430,7 @@ App Pipeline Runner}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{27.12982177734375, 294}, {99, 63}}</string>
+			<string>{{33, 177}, {99, 63}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -312,7 +447,7 @@ App Pipeline Runner}</string>
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc
 
-\f0\fs24 \cf0 FTP for upload datasets}</string>
+\f0\fs24 \cf0 FTP for upload to datastream}</string>
 				<key>VerticalPad</key>
 				<integer>0</integer>
 			</dict>
@@ -325,14 +460,14 @@ App Pipeline Runner}</string>
 				<key>ID</key>
 				<integer>27</integer>
 				<key>Info</key>
-				<integer>4</integer>
+				<integer>2</integer>
 			</dict>
 			<key>ID</key>
 			<integer>45</integer>
 			<key>Points</key>
 			<array>
-				<string>{136.98916094447711, 221.08164720722507}</string>
-				<string>{224, 239.5}</string>
+				<string>{350.51376405970876, 63.035069484956495}</string>
+				<string>{250.49999618530273, 87}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -354,7 +489,7 @@ App Pipeline Runner}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{37.5, 179}, {99, 63}}</string>
+			<string>{{351, 18.000045776367188}, {112, 63}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -365,13 +500,18 @@ App Pipeline Runner}</string>
 			<dict/>
 			<key>Text</key>
 			<dict>
+				<key>Align</key>
+				<integer>0</integer>
 				<key>Text</key>
 				<string>{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf510
 {\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\qc
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
 
-\f0\fs24 \cf0 UI for uploading and running analysis}</string>
+\f0\fs24 \cf0 \
+UI to\
+Create Datstream\
+Upload &amp; Run}</string>
 				<key>VerticalPad</key>
 				<integer>0</integer>
 			</dict>
@@ -384,14 +524,14 @@ App Pipeline Runner}</string>
 				<key>ID</key>
 				<integer>26</integer>
 				<key>Info</key>
-				<integer>2</integer>
+				<integer>4</integer>
 			</dict>
 			<key>ID</key>
 			<integer>43</integer>
 			<key>Points</key>
 			<array>
-				<string>{359.54192134385028, 71.356659412065497}</string>
-				<string>{273.5, 109}</string>
+				<string>{132.49701880927296, 336.98423637830399}</string>
+				<string>{200.50315540401425, 344.44391571805727}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -413,7 +553,7 @@ App Pipeline Runner}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{360, 18}, {99, 63}}</string>
+			<string>{{33, 300}, {99, 63}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -564,6 +704,8 @@ App Pipeline Runner}</string>
 			<dict>
 				<key>ID</key>
 				<integer>32</integer>
+				<key>Info</key>
+				<integer>4</integer>
 			</dict>
 			<key>ID</key>
 			<integer>38</integer>
@@ -572,11 +714,11 @@ App Pipeline Runner}</string>
 			<key>OrthogonalBarPoint</key>
 			<string>{0, 0}</string>
 			<key>OrthogonalBarPosition</key>
-			<real>24.600000381469727</real>
+			<real>30.100000381469727</real>
 			<key>Points</key>
 			<array>
-				<string>{554, 283.5}</string>
-				<string>{627, 346.5}</string>
+				<string>{553, 263.50004577636719}</string>
+				<string>{637, 292.50004577636719}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -613,11 +755,11 @@ App Pipeline Runner}</string>
 			<key>OrthogonalBarPoint</key>
 			<string>{0, 0}</string>
 			<key>OrthogonalBarPosition</key>
-			<real>24.600000381469727</real>
+			<real>30.100000381469727</real>
 			<key>Points</key>
 			<array>
-				<string>{554, 283.5}</string>
-				<string>{627, 220.5}</string>
+				<string>{553, 263.50004577636719}</string>
+				<string>{637, 202.50004577636719}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -656,11 +798,11 @@ App Pipeline Runner}</string>
 			<key>OrthogonalBarPoint</key>
 			<string>{0, 0}</string>
 			<key>OrthogonalBarPosition</key>
-			<real>54.100002288818359</real>
+			<real>65.099998474121094</real>
 			<key>Points</key>
 			<array>
-				<string>{322.99999999999994, 423.5}</string>
-				<string>{455.00000000000006, 283.5}</string>
+				<string>{299.99999999999994, 457.5}</string>
+				<string>{454.00000000000006, 263.50004577636719}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -701,11 +843,11 @@ App Pipeline Runner}</string>
 			<key>OrthogonalBarPoint</key>
 			<string>{0, 0}</string>
 			<key>OrthogonalBarPosition</key>
-			<real>54.100002288818359</real>
+			<real>65.099998474121094</real>
 			<key>Points</key>
 			<array>
-				<string>{322.99999999999994, 325.5}</string>
-				<string>{455.00000000000006, 283.5}</string>
+				<string>{299.99999999999994, 231.5}</string>
+				<string>{454.00000000000006, 263.50004577636719}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -736,6 +878,8 @@ App Pipeline Runner}</string>
 			<dict>
 				<key>ID</key>
 				<integer>29</integer>
+				<key>Info</key>
+				<integer>4</integer>
 			</dict>
 			<key>ID</key>
 			<integer>34</integer>
@@ -744,11 +888,11 @@ App Pipeline Runner}</string>
 			<key>OrthogonalBarPoint</key>
 			<string>{0, 0}</string>
 			<key>OrthogonalBarPosition</key>
-			<real>54.100002288818359</real>
+			<real>65.100006103515625</real>
 			<key>Points</key>
 			<array>
-				<string>{322.99999999999994, 239.5}</string>
-				<string>{455.00000000000006, 283.5}</string>
+				<string>{299.99999618530279, 118.5}</string>
+				<string>{454.00000000000006, 263.50004577636719}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -787,11 +931,11 @@ App Pipeline Runner}</string>
 			<key>OrthogonalBarPoint</key>
 			<string>{0, 0}</string>
 			<key>OrthogonalBarPosition</key>
-			<real>54.100002288818359</real>
+			<real>65.099998474121094</real>
 			<key>Points</key>
 			<array>
-				<string>{322.99999999999994, 140.5}</string>
-				<string>{455.00000000000006, 283.5}</string>
+				<string>{299.99999999999994, 344.5}</string>
+				<string>{454.00000000000006, 263.50004577636719}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -817,7 +961,7 @@ App Pipeline Runner}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{627, 315}, {99, 63}}</string>
+			<string>{{637, 261.00004577636719}, {99, 63}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -854,7 +998,7 @@ VA/VCS\
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{627, 189}, {99, 63}}</string>
+			<string>{{637, 171.00004577636719}, {99, 63}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -890,7 +1034,7 @@ iRport}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{224, 109}, {99, 63}}</string>
+			<string>{{201, 313}, {99, 63}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -926,7 +1070,7 @@ API}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{224, 294}, {99, 63}}</string>
+			<string>{{201, 200}, {99, 63}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -962,7 +1106,7 @@ FTP}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{455, 252}, {99, 63}}</string>
+			<string>{{454, 232.00004577636719}, {99, 63}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -999,7 +1143,7 @@ FTP}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{224, 392}, {99, 63}}</string>
+			<string>{{201, 426}, {99, 63}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -1035,7 +1179,7 @@ Developer}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{224, 208}, {99, 63}}</string>
+			<string>{{200.99999618530273, 87}, {99, 63}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>ID</key>
@@ -1117,7 +1261,7 @@ Portal}</string>
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2013-10-04 01:25:37 +0000</string>
+	<string>2013-10-04 07:33:54 +0000</string>
 	<key>Modifier</key>
 	<string>Danny Nguyen</string>
 	<key>NotesVisible</key>
