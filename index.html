@@ -594,18 +594,18 @@ public void validateWithActivationCodeShouldReturnStatusOk() throws Exception {
             method = GET
 )
 @ResponseBody
-public List<DataPackage> findPaginated(
-            @RequestParam( "page" ) int page, @RequestParam( "size" ) int size,
+public List&lt;DataPackage&gt; findPaginated(
+            @RequestParam("page") int page, @RequestParam( "size" ) int size,
             UriComponentsBuilder uriBuilder, HttpServletResponse response ){
 
-   Page< Foo > resultPage = service.findPaginated( page, size );
-   if( page > resultPage.getTotalPages() ){
+   Page&lt;DataPackaage&gt; resultPage = service.findPaginated(page, size);
+   if( page &gt; resultPage.getTotalPages() ){
       throw new ResourceNotFoundException();
    }
 
    eventPublisher.publishEvent(
-            new PaginatedResultsRetrievedEvent<Foo>(
-                Foo.class, uriBuilder, response, page,
+            new PaginatedResultsRetrievedEvent&lt;DataPacakge&gt;(
+                DataPackage.class, uriBuilder, response, page,
                 resultPage.getTotalPages(), size ) );
 
    return resultPage.getContent();
