@@ -298,20 +298,206 @@ public Map doScreenScrape(@PathVariable String id,
 
 <!-- FTP -->
 <section>
+    <section>
+        <h2>FTP Server</h2>
+        <ul>
+            <li>Needs to be secure</li>
+            <li>Extensible to work with DS model/process</li>
+            <li>Reduce user managment cost</li>
+            <li>Deployable/Installer compatible bundle</li>
+        </ul>
+    </section>
+    <section>
+        <h2>Apache MINA</h2>
+        <p>Apache MINA is a network application framework which helps users develop high performance and high scalability network applications easily. </p>
+    </section>
+    <section>
+        <h2>Apache FtpServer</h2>
+        <p>A FTP server built on top of the MINA APIs</p>
+    </section>
+    <section>
+        <p>How to make FTP upload secure?</p>
+        <p class="fragment">Add Transport Layer Security (TLS)/Secure Socket Layer (SSL)</p>
+        <p class="fragment">Needs to encrypt both:</p>
+        <ul class="fragment">
+            <li>control channel</li>
+            <li>data channel</li>
+        </ul>
+    </section>
+    <section>
+        <h2>Ingenuity CA certificate</h2>
+        <p>Put in Java Key Store with file access and password protected</p>
+        <pre class="prettyprint">
+keytool -import -trustcacerts -alias ftp://ftp.ingenuity.com  -file Ingenuity.crt -keystore ftpserver.jks
+        </pre>
+    </section>
+    <section>
+        <p>Configure Apache FTP Server to use SSL</p>
+        <pre class="prettyprint">
+SslConfigurationFactory ssl = new SslConfigurationFactory();
+ssl.setKeystoreFile(jks);
+ssl.setKeystorePassword(keyStorePassword);
 
+listenerFactory.setSslConfiguration(ssl.createSslConfiguration());
+listenerFactory.setImplicitSsl(false);
+        </pre>
+    </section>
+    <section>
+        <p>Force user to not send password in clear text.  Also make sure uploaded data file is being encrypted</p>
+        <pre class="prettyprint">
+// is this a secure control connection?
+String command = request.getCommand().toUpperCase();
+if ("USER".equals(command)) {
+    if (!session.isSecure()) {
+        session.write(new DefaultFtpReply(
+            FtpReply.REPLY_550_REQUESTED_ACTION_NOT_TAKEN,
+            "TLS/SSL control connection required."));
+        return FtpletResult.SKIP;
+    }
+}
+
+// is this a secure data connection?
+// commands like: APPE, LIST, MLSD, NLST, RETR, STOR, STOU
+if (DATA_CHANNEL_CONNECTIONS.contains(command)) {
+    if (!session.isSecure()) {
+        session.write(new DefaultFtpReply(
+            FtpReply.REPLY_550_REQUESTED_ACTION_NOT_TAKEN,
+            "TLS/SSL data connection required."));
+        return FtpletResult.SKIP;
+    }
+}
+        </pre>
+    </section>
+    <section>
+        <p>Extending FTP validations</p>
+        <ul>
+            <li>User can only upload to datastream created folders</li>
+            <li>Destination must belong to the user</li>
+            <li>Modifcation only within the Datastream folder</li>
+        </ul>
+    </section>
+    <section>
+        <p>How to maintain users?</p>
+        <p class="fragment">Use existing Ingenuity user accounts</p>
+        <p class="fragment">Integrate with IMS</p>
+        <p class="fragment">Implement Apache UserManager interface</p>
+    </section>
+    <section>
+        <p>How to authenticate username/password?</p>
+        <p class="fragment">Not possible to redirect to SSO</p>
+        <p class="fragment">Delegate to IMS AuthenticationHandler service</p>
+    </section>
+    <section>
+        <p>How to make it Installer compatible<?/p>
+        <p class="fragment">Maven assembly generating installer directory structure</p>
+        <pre class="fragment prettyprint">
+tree datastream_ftp-1.2.220818
+├── README.md
+├── bin
+│   └── datastream_ftp.sh
+├── classes
+│   ├── datastream_ftp-config.properties
+│   ├── datastream_ftp.xml
+│   ├── log4j.properties
+│   ├── rosetta.properties
+├── datastream_ftp-1.2.220818.jar
+├── lib
+└── setup
+    ├── build.spec
+    ├── datastream_ftp.xml
+    ├── deployment.datastream_ftp.setup
+    ├── deployment.datastream_ftp.spec
+    ├── deployment.datastream_ftp.spec.register
+    ├── deployment.datastream_ftp.spec.stats
+    ├── deployment.spec -> /usr/local/ingenuity/datastream_ftp/datastream_ftp-1.2.220818/setup/deployment.datastream_ftp.spec
+    └── plugin
+        ├── cfquery.pl
+        └── monitor.sh
+        </pre>
+    </section>
 </section>
 
+<!-- Rest API -->
 <section>
-    <h2>Point of View</h2>
+    <section>
+        <h2>Rest API</h2>
+        <ul>
+            <li>Secure</li>
+            <li>Grants/Access at the application level not at the user level</li>
+            <li>Follow restful API best practices guidelines</li>
+            <li>discoverable, backward compatible, extendsible</li>
+        </ul>
+    </section>
+    <section>
+        <h2>OAuth2 client_credentials flow</h2>
+        <ul>
+            <li>generate api key and secret for each application</li>
+            <li>implement key and secret repository</li>
+            <li>Use IMS TokenService for generating access_token</li>
+            <ul>
+                <li>token scope/context</li>
+                <li>configurable expiry</li>
+                <li>centralize and available to all application to validate token</li>
+            </ul>
+        </ul>
+    </section>
+    <section>
+        <h2>Spring MVC</h2>
+        <p class="fragment">And others</p>
+        <ul class="fragment">
+            <li>lombok</li>
+            <li>Jackson, JAXB 2</li>
+            <li>MockMVC for testing controllers</li>
+        </ul>
+    </section>
+    <section>
+        <p>How to avoid redirecting to the log in page?</p>
+        <p class="fragment">
+            Use a different authentication filter chain for /api/**  The chain will stop if api key can not be authenticated and reuturn 401 access denied
+        </p>
+    </section>
+    <section>
+        <p>The same can be use for AJAX requests.  Extend CasProcessFilterEntryPoint</p>
+        <pre class="prettyprint">
+HttpServletRequest request = (HttpServletRequest) servletRequest;
+HttpServletResponse response = (HttpServletResponse) servletResponse;
+if ("XMLHttpRequest".equals(request.getHeader("X-Requested-With")) {
+    response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+    return;
+}
+        </pre>
+    </section>
+    <section>
+        <h2>WebConfig</h2>
+        <pre class="prettyprint">
+@Configuration
+@EnableWebMvc
+public class WebConfig{
+   //
+}
+        </pre>
+        <p>@EnableWebMvc will register default JSON and XML converters if Jackson and JAXB 2 exists in the classpath</p>
+    </section>
+    <section>
+        <h2>Controller</h2>
+        <pre class="prettyprint">
+@Controller
+@RequestMapping( value = "/v1/datapackages" )
+public class DataUploadController {
 
-    <p>
-        Press <strong>ESC</strong> to enter the slide overview.
-    </p>
+  @Autowired
+  private DataPackageService dataPackageService;
 
-    <p>
-        Hold down alt and click on any element to zoom in on it using <a href="http://lab.hakim.se/zoom-js">zoom.js</a>.
-        Alt + click anywhere to zoom back out.
-    </p>
+  @RequestMapping(value="/{dataPackageId}")
+  @ResponseBody
+  public DataPackage retrieveDataPackageInfo(
+            @PathVariable("dataPackageId") String dataPackageId,
+            HttpServletResponse response) throws Exception {
+    return dataPackage;
+  }
+}
+        </pre>
+    </section>
 </section>
 
 <section>
