@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>reveal.js - The HTML Presentation Framework</title>
+    <title>Datastream Integration</title>
 
     <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
     <meta name="author" content="Hakim El Hattab">
@@ -19,7 +19,7 @@
 
     <!-- For syntax highlighting -->
     <!--<link rel="stylesheet" href="lib/css/zenburn.css">-->
-    <link href="plugin/google-code-prettify/prettify.css" type="text/css" rel="stylesheet" />
+    <link href="plugin/google-code-prettify/prettify.css" type="text/css" rel="stylesheet"/>
 
     <!-- If the query includes 'print-pdf', use the PDF print sheet -->
     <script>
@@ -41,7 +41,9 @@
 <!-- Introduction -->
 <section>
     <h1>Datastream</h1>
+
     <h3>Partner Integration</h3>
+
     <p>
         <small>Implementation Notes</small>
     </p>
@@ -54,6 +56,7 @@
     </section>
     <section>
         <h2>Goal</h2>
+
         <p>
             Get datasets into Ingenuity's Applications
         </p>
@@ -80,6 +83,7 @@
 <section>
     <section>
         <h2>Portal Page</h2>
+
         <p>
             UI front end for getting data in.
         </p>
@@ -109,20 +113,43 @@
         <img src="img/ds-initial-auth-page.png" alt="authenticated landing page"/>
     </section>
     <section>
-        <!--<p>How to detect if user is already authenticated?</p>-->
-        <!--<p class="fragment">Spring holds user's authentication info in a thread local variable.</p>-->
+        <p>How to detect if user is already authenticated?</p>
+
+        <p class="fragment">Spring holds user's authentication info in a thread local variable.</p>
+    </section>
+    <section>
+        <a href="https://gist.github.com/dannyduc/6823614" target="_blank">https://gist.github.com/dannyduc/6823614</a>
         <pre class="prettyprint">
-            public abstract class AuthenticationUtil {
-  public static boolean isAnonymous() {
-    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-    boolean isAnonymous = AnonymousAuthenticationToken.class.isAssignableFrom(authentication.getClass());
-    return isAnonymous;
-  }
-  public static boolean isAuthenticated() {
-    return UserContext.getUserDetails() != null;
-  }
-}
+            SecurityContextHolder.getContext().getAuthentication();
         </pre>
+    </section>
+    <section>
+        <p>How to check if already authenticated via SSO?</p>
+
+        <p class="fragment">
+            CAS Gateway
+            <a href="https://wiki.jasig.org/display/CASC/CAS+Java+Client+Gateway+Example" target="_blank">
+                https://wiki.jasig.org/display/CASC/CAS+Java+Client+Gateway+Example
+            </a>
+        </p>
+    </section>
+    <section>
+        <h2>No SSO session</h2>
+        <img src="img/casNotLoggedInSeq.png" alt="not logged in sequence"/>
+    </section>
+    <section>
+        <h2>SSO session</h2>
+        <img src="img/casValidSessionSeq.png" alt="valid session sequence"/>
+    </section>
+    <section>
+        <h2>CAS Gateway Demo</h2>
+        <p>
+            <a href="https://github.com/dannyduc/cas-gateway" target="_blank">https://github.com/dannyduc/cas-gateway</a>
+        </p>
+    </section>
+    <section>
+        <h2>Google reCAPCHA</h2>
+        <p><a href="http://www.google.com/recaptcha" target="_blank">http://www.google.com/recaptcha</a></p>
     </section>
 </section>
 
