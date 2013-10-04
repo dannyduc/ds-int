@@ -4,7 +4,9 @@ http://dannyduc.github.io/ds-int/index.html
 
 Checkout
 
-    git clone
+    git clone https://github.com/dannyduc/ds-int
+    cd ds-int
+    git fetch origin gh-pages
     
 Local edit
 
