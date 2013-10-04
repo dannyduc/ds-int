@@ -588,7 +588,11 @@ public void validateWithActivationCodeShouldReturnStatusOk() throws Exception {
     <section>
         <h2>Controller Publish</h2>
         <pre class="prettyprint">
-@RequestMapping(value = "/datapackages", params = { "page", "size" }, method = GET )
+@RequestMapping(
+            value = "/datapackages",
+            params = { "page", "size" },
+            method = GET
+)
 @ResponseBody
 public List<DataPackage> findPaginated(
             @RequestParam( "page" ) int page, @RequestParam( "size" ) int size,
@@ -598,8 +602,11 @@ public List<DataPackage> findPaginated(
    if( page > resultPage.getTotalPages() ){
       throw new ResourceNotFoundException();
    }
-   eventPublisher.publishEvent( new PaginatedResultsRetrievedEvent< Foo >
-    ( Foo.class, uriBuilder, response, page, resultPage.getTotalPages(), size ) );
+
+   eventPublisher.publishEvent(
+            new PaginatedResultsRetrievedEvent<Foo>(
+                Foo.class, uriBuilder, response, page,
+                resultPage.getTotalPages(), size ) );
 
    return resultPage.getContent();
 }
