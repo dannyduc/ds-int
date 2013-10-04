@@ -151,15 +151,83 @@
         <h2>Google reCAPCHA</h2>
         <p><a href="http://www.google.com/recaptcha" target="_blank">http://www.google.com/recaptcha</a></p>
     </section>
+    <section>
+        <h2>Usage Guide</h2>
+        <p><a href="https://developers.google.com/recaptcha/intro" target="_blank">https://developers.google.com/recaptcha/intro</a></p>
+        <ol>
+            <li>API keys</li>
+            <li>Client Side: Displaying the reCAPTCHA Widget (Required)</li>
+            <li>Server Side: Verifying the solution (Required)</li>
+            <lit>Customizations (Optional)</lit>
+        </ol>
+    </section>
+    <section>
+        <h2>API keys</h2>
+        <pre class="prettyprint">
+# ingenuity.com
+recaptcha.publicKey=9feWa9MSCCCCCJjtBRFn0jdlCoUR7h0v9cdfg1xv
+recaptcha.privateKey=9feWa9MSKKKKKKGfVO9WZXTil37CtrxDjLXiCFIz
+        </pre>
+    </section>
+    <section>
+        <h2>Client Side</h2>
+        <pre class="prettyprint">
+&lt;script type="text/javascript"
+        src="http://www.google.com/recaptcha/api/challenge?k=your_public_key"&gt;
+&lt;/script&gt;
+        </pre>
+    </section>
+    <section>
+        <h2>Server Side</h2>
+        <p>http://www.google.com/recaptcha/api/verify</p>
+        <ul>
+            <li>privatekey</li>
+            <li>remoteid</li>
+            <li>challenge</li>
+            <li>response</li>
+        </ul>
+    </section>
+    <section>
+        <h2>Customize</h2>
+        <pre class="prettyprint">
+&lt;script type="text/javascript"&gt;
+    var RecaptchaOptions = {
+        theme : 'clean'
+    };
+&lt;/script&gt;
+        </pre>
+    </section>
 </section>
 
 <section>
-    <h2>Slides</h2>
-
-    <p>
-        Not a coder? No problem. There's a fully-featured visual editor for authoring these, try it out at <a
-            href="http://slid.es" target="_blank">http://slid.es</a>.
-    </p>
+    <section>
+        <h2>Sharefile</h2>
+        <ul>
+            <li>Use APIs to create Sharefile folders</li>
+            <li>Embed UI into portal page</li>
+            <li>When upload completes trigger run analysis</li>
+        </ul>
+    </section>
+    <section>
+        <h2>Sharefile APIs</h2>
+        <p>Single user account to create share folders for all Portal Page requests</p>
+    </section>
+    <section>
+        <h2>Embedded SF UI</h2>
+        <img src="img/sf-upload-ui.png" alt="sharefile upload ui"/>
+    </section>
+    <section>
+        <p>How to customize Sharefile UI</p>
+        <p>No working solutions from SF developers</p>
+    </section>
+    <section>
+        <h2>SF Customization Strategy</h2>
+        <ul>
+            <li>Edit UI files and host them on Portal server</li>
+            <li>Screen scrape SF generated ID a load time</li>
+            <li>Use SF internal APIs to send files to AWS</li>
+        </ul>
+    </section>
 </section>
 
 <section>
