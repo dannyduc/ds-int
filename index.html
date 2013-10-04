@@ -788,6 +788,28 @@ public DataPackageMetadata loadMetadata(String dataPackageId) {
         </p>
     </section>
     <section>
+        <pre class="prettyprint">
+// obtain ticket to execute va services
+String service = "https://variants.ingenuity.com/va/j_spring_cas_security_check";
+String ticket = UserContext.getProxyTicketFor(service);
+
+// create a va session
+HttpClient client= new DefaultHttpClient();
+HttpHead headRequest = new HttpHead(service + "?ticket=" + ticket);
+HttpResponse response = client.execute(headRequest);
+
+// execute a va service request as the current logged user
+HttpGet getRequest = new HttpGet("https://variants.ingenuity.com/va/r/DataSetService/sample/123");
+response = client.execute(getRequest);
+        </pre>
+    </section>
+    <section>
+        <h2>Sample Code</h2>
+        <a href="http://svn.ingenuity.com:8081/repos/trunk/ing/ims_component/ingsecurity/ingsecurity-api/src/main/webapp/protected/protected.jsp" target="_blank">
+            http://svn.ingenuity.com:8081/repos/trunk/ing/ims_component/ingsecurity/ingsecurity-api/src/main/webapp/protected/protected.jsp
+        </a>
+    </section>
+    <section>
         <p>Occasional errors when getting analysis status from VA</p>
         <pre class="prettyprint">
 @Retry
