@@ -911,9 +911,11 @@ Oct  2 16:44:17 ipapiapp2 [appname:datastream_integration] 44:17 [pool-1-thread-
 
 SamlMsg msg = samlLoginService.login(ssoAssertionUrl, dsServiceUrl);
 
-java.util.List&lt;NameValuePair&gt; nameValuePairs = new ArrayList&lt;NameValuePair&gt;();
-nameValuePairs.add(new BasicNameValuePair("RelayState", msg.getRelayState()));
-nameValuePairs.add(new BasicNameValuePair("SAMLResponse", msg.getSamlResponse()));
+List&lt;NameValuePair&gt; nameValuePairs = new ArrayList&lt;NameValuePair&gt;();
+nameValuePairs.add(
+            new BasicNameValuePair("RelayState", msg.getRelayState()));
+nameValuePairs.add(
+            new BasicNameValuePair("SAMLResponse", msg.getSamlResponse()));
 
 HttpPost httpPost = new HttpPost(msg.getSamlPostUrl());
 httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
