@@ -1,6 +1,6 @@
-# Datastream
+# Datastream Integration Presentation
 
-http://dannyduc.github.io/ds-int/index.html
+dannyduc.github.io/ds-int
 
 Checkout
 
