@@ -628,6 +628,32 @@ public List&lt;DataPackage&gt; findPaginated(
 }
         </pre>
     </section>
+    <section>
+        <h2>ApplicationListener</h2>
+        <pre class="prettyprint">
+void addLinkHeaderOnPagedResourceRetrieval(
+            UriComponentsBuilder uriBuilder, HttpServletResponse response,
+            Class clazz, int page, int totalPages, int size) {
+
+   String resourceName = clazz.getSimpleName().toString().toLowerCase();
+   uriBuilder.path( "/v1/" + resourceName );
+
+   StringBuilder linkHeader = new StringBuilder();
+
+   if (hasNextPage(page, totalPages)) {
+     String uriNextPage = constructNextPageUri(uriBuilder, page, size);
+     linkHeader.append(createLinkHeader(uriForNextPage, REL_NEXT));
+   }
+   if (hasPreviousPage(page)){
+      String uriPrevPage = constructPrevPageUri(uriBuilder, page, size);
+      appendCommaIfNecessary(linkHeader);
+      linkHeader.append(createLinkHeader(uriForPrevPage, REL_PREV));
+   }
+
+   response.addHeader(HttpConstants.LINK_HEADER, linkHeader.toString());
+}
+        </pre>
+    </section>
 </section>
 
 <!-- Developer -->
